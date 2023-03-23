@@ -1,0 +1,975 @@
+
+/*----------------- Main Layout ------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Estonia&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lexend&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crafty+Girls&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grey+Qo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
+
+/* A CSS Grid example using "grid-template-areas"
+  https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+:root {
+    --background-width: 950px;
+
+    --select-border: #777;
+    --select-arrow: var(--select-border);
+
+    --input-hover-bg-color: #00000028;
+    --input-edit-bg-color: var(--input-hover-bg-color);
+    --input-edit-color: black;
+
+    --input-name-width: 375px;
+    --input-aspects-width: 375px;
+    --input-skills-width: 375px;
+
+    --left-column-align: 200px;
+
+    --text-color: #333;
+
+    --num-color: var(--text-color);
+    --num-font-family: 'Dancing Script', 'Lexend', cursive;
+
+    --dice-font-family: 'Dancing Script', 'Lexend', cursive;
+
+
+    --note-font-family: 'Indie Flower', cursive;
+
+
+
+}
+
+.lock-button-test{
+    left:100px;
+    top:0px;
+    height:32px;
+    width:32px;
+    z-index: 100;
+    text-align: center;
+    align-items: center;
+    position:absolute;
+}
+
+
+
+.lock {
+    height:32px;
+    width:32px;
+    border:1px solid purple;
+    /* display:none; */
+}
+
+.lock button {
+    position:absolute;
+    top:32px;
+    left:0px;
+    height:32px;
+    width:32px;
+    display:none;
+}
+
+.lock button > span {
+    /* visibility: inherit; */
+    /* position: relative; */
+    /* width: 32px; */
+    /* top: 50%;
+    left: -10%;*/
+    transform: translate(-7px,0);
+    /* overflow: hidden; */
+}
+
+.lock:hover button{
+    display:block;
+}
+
+.lock button:active > span {
+    /* font-size: 20px; */
+    /* transform: scale(0.9); */
+    transform: scale(0.9) translate(-8px,1px);
+}
+
+.lock input:checked ~ .lock-symbol {
+    display: none;
+}
+.lock input:checked ~ .unlock-symbol {
+    display: block;
+}
+
+.lock-symbol {
+
+}
+
+.unlock-symbol {
+    display:none
+}
+
+.lock-symbol:hover {
+    /* display:none */
+}
+
+
+.unlock-symbol:hover {
+
+}
+
+button[type=roll],
+button[type=action],
+button[type=compendium],
+button[type=cancel],
+button[type=submit],
+button[type=finish],
+button[type=back],
+label{
+    background-color: transparent;
+    /* border-style: solid; */
+    /* border: 1px solid black; */
+    /* outline: 1px;
+    outline-width: 1px; */
+
+    /* line-height: 12px; */
+    background-image: none;
+    box-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+    width: 32px;
+    height: 32px;
+    /* top: 5px; */
+}
+button[type=roll]::before{
+    content: "" !important;
+}
+button[type=roll] span{
+    position: relative;
+    bottom: 5px;
+    font-size: 16px;
+    /* height: 32px; */
+    /* width: 60px; */
+    border-width: 1px;
+    border-radius: 3px;
+    font-family: 'Berkshire Swash', cursive;
+    text-align: center;
+}
+
+
+
+.global-div {
+    position: relative;
+    top:0px;
+    left:0px;
+}
+
+.bg-div {
+    position: absolute;
+    max-width: var(--background-width);
+    min-width: var(--background-width);
+    /* height:1200px;
+    background-image: url(https://jen.shx.gg/5YxQK6Us6.png);
+    background-repeat: repeat-y; */
+}
+
+.white-background-img {
+    text-align: left;
+    position: absolute;
+    /* left: 0; */
+    top: 40;
+    max-width: var(--background-width);
+    min-width: var(--background-width);
+    padding: 0px;
+    user-select: none;
+    background-color: yellow;
+    height:1400px;
+    resize: vertical;
+    background-size: cover;
+}
+
+.toplayer {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+
+
+.ui-dialog .charsheet {
+    max-width: var(--background-width);
+    min-width: var(--background-width);
+    padding: 0;
+}
+
+
+
+.background-img {
+    text-align: left;
+    position: absolute;
+    max-width: var(--background-width);
+    min-width: var(--background-width);
+    padding: 0px;
+    user-select: none;
+}
+
+.main-div {
+    /* position: absolute;
+    top:50px;
+    left:0px; */
+    max-width: var(--background-width);
+    min-width: var(--background-width);
+    background-color: red;
+}
+
+.note-div {
+    position:absolute;
+    top:820px;
+    max-width: var(--background-width);
+    min-width: var(--background-width);
+    font-family: var(--note-font-family);
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+}
+
+.note-div span {
+    margin-left:10px;
+}
+
+.note-div textarea {
+    position: relative;
+    box-sizing: border-box ;
+    max-width: var(--background-width) - 30px;
+    min-width: var(--background-width) - 30px;
+    max-width: 930px;
+    min-width: 930px;
+    min-height: 600px;
+    margin-left:  10px;
+    margin-right: 10px;
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: bold;
+    padding:15px;
+    text-align: justify;
+    background-color: #EEE;
+    border: 1px dashed #EEE;
+}
+
+
+.text {
+    font-family: 'Grey Qo';
+    font-size: 42px;
+    text-align: left;
+    background-color: transparent;
+    border-width: 0px;
+    /* color: black; */
+}
+
+
+.name {
+    position: absolute;
+    left:200px;
+    top:150px;
+}
+
+.name input {
+    width: var(--input-name-width);
+}
+
+.hp-input {
+    width: 50px;
+    text-align: right;
+}
+
+.hp-max-input {
+    width: 50px;
+    text-align: left;
+}
+.language-input {
+    position: relative;
+    top:-4px;
+    width: 300px;
+    font-size: 28px;
+}
+
+.hero-input {
+    width: 50px;
+}
+
+
+
+
+.score-input {
+    position: relative;
+    left: 15px;
+    width: 50px;
+    /* text-align: left; */
+    font-size: 64px;
+}
+
+input {
+    text-align: left;
+    background-color: transparent;
+    border-width: 0px;
+    /* color: black; */
+}
+
+/* input:read-write:focus { */
+    /* color:violet; */
+    /* outline: none; */
+/* } */
+
+input:read-only {
+    background-color: transparent;
+    border-width: 0px;
+    /* color: black; */
+}
+
+input:read-only:hover {
+    cursor: default;
+}
+
+input:read-only:focus {
+    outline: none;
+}
+
+
+.score {
+    position: absolute;
+    text-align: center;
+    font-family: 'Grey Qo';
+}
+
+.dice {
+    position: absolute;
+    text-align: center;
+    font-family: 'Grey Qo';
+    font-size: 42px;
+}
+
+
+
+/* ============ Dés de vie ============ */
+
+.hp-dice {
+    position:absolute;
+    top:100px;
+    left:850px;
+}
+
+.static-life {
+    position: absolute;
+    left:40px;
+    top:25px;
+    font-size: 42px;
+}
+
+.static-life input {
+    font-size: 42px;
+    left: -80px;
+}
+
+.var-life {
+    position:absolute;
+    left:20px;
+    top:0px;
+}
+
+.var-life input {
+    position: absolute;
+    font-size: inherit;
+}
+
+.var-life span {
+    position: absolute;
+    font-size: inherit;
+}
+
+/* ============ Compteur de vie ============ */
+
+.life {
+    position: absolute;
+    top: 185px;
+    left: 850px;
+
+    font-family: 'Grey Qo';
+    font-size: 42px;
+}
+
+.life div {
+    position: absolute;
+}
+
+.life input {
+    position: absolute;
+    font-size: 42px;
+}
+
+.life span {
+    position: absolute;
+    font-family: 'Estonia';
+    left:-10px;
+}
+
+.slash {
+    font-family: 'Estonia';
+}
+
+
+/* ============ Dés d'héroïsme ============ */
+
+
+.hero {
+    position:absolute;
+    top:245px;
+    left:880px;
+    font-family: 'Grey Qo';
+    font-size: 42px;
+}
+
+.hero input {
+    position: absolute;
+    font-size: inherit;
+}
+
+.hero-dice {
+    position:absolute;
+    top:285px;
+    left:875px;
+    font-family: 'Grey Qo';
+    font-size: 42px;
+}
+
+/* ============ Bonus aux jets ============ */
+
+.bonus {
+    position: absolute;
+    top: 468px;
+    left: 832px;
+    font-size: 64px;
+}
+
+.standard {
+    position: absolute;
+    top:0px;
+}
+
+.movement {
+    position: absolute;
+    top:103px;
+}
+
+.defense {
+    position: absolute;
+    top:206px;
+}
+
+
+.score input {
+    position: absolute;
+}
+
+.level button,
+.hpdice button,
+.hddice button,
+.bonus button {
+    background-color: transparent;
+    position:absolute;
+    border-style: none;
+    /* border-style: 1px solid black; */
+    /* top:3px;
+    left:-18px; */
+    top:0px;
+    left:0px;
+    height:86px;
+    width:86px;
+    font-weight:400;
+}
+
+.level {
+    position: absolute;
+    left: 630px;
+    top: 227px;
+    height:86px;
+    width:128px;
+    font-size: 64px;
+    font-family: var(--num-font-family);
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+.hpdice {
+    position: absolute;
+    left: 858px;
+    top: 98px;
+    height:86px;
+    width:86px;
+    font-size: 64px;
+    font-family: var(--num-font-family);
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+.bonus_button:active {
+    box-shadow: none;
+}
+
+.bonus_button[type=roll]:active,
+.bonus_button[type=roll]:active > span,
+.bonus_button[type=action]:active,
+.bonus_button[type=action]:active > span {
+    color:black;
+}
+
+.hddice {
+    position: absolute;
+    left: 858px;
+    top: 260px;
+    height:150px;
+    width:86px;
+    font-size: 64px;
+    font-family: var(--num-font-family);
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+.hddice .selector {
+    position: absolute;
+    width:100%;
+    height:50px;
+    top:100px;
+    font-size: 28px;
+    border: 3px solid var(--num-color);
+    border-radius: 2px;
+    /* display: none; */
+}
+
+.hddice .selector:hover {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.hddice .selector:active {
+    font-size: 26px;
+}
+
+.hpcount {
+    position: absolute;
+    left: 820px;
+    top: 199px;
+    height:40px;
+    width:160px;
+    font-size: 64px;
+    font-family: var(--num-font-family);
+    text-align: center;
+    /* border: 1px solid red; */
+}
+
+.hpcount button {
+    position: absolute;
+    height:100%;
+    width:100px;
+    top:0px;
+    left:30px;
+    background-color: transparent;
+    border: none;
+}
+
+.hpcount  .selector {
+    position: absolute;
+    font-size: 32px;
+    height:100%;
+    width:30px;
+    display: none;
+}
+
+.hpcount .selector.increase {
+    left:130px;
+}
+.hpcount .selector.decrease {
+    left:0px;
+}
+
+
+
+.hpcount button,
+.hddice button,
+.hpdice button {
+    /* border: 1px solid black; */
+}
+
+
+
+
+.hpcount button,
+.hpcount span,
+.hddice button,
+.hddice span,
+.hpdice button,
+.hpdice span {
+    font-family: var(--num-font-family);
+    color: var(--num-color);
+    font-size: 28px;
+    line-height: 32px;
+    
+}
+
+/* .bonus_button * {
+    font-family: var(--num-font-family);
+    color: var(--num-color);
+    font-size: 64px;
+} */
+/* .level-input {
+    height:86px;
+    min-width:86px;
+    max-width:86px;
+} */
+
+
+.level button span,
+.bonus button span {
+    /* position: absolute;
+    top:0px;
+    left:0px; */
+    font-family: var(--num-font-family);
+    /* font-weight: inherit; */
+    color: var(--num-color);
+    font-size: 64px;
+    /* border: 1px solid black; */
+    /* height:inherit;
+    width:inherit; */
+}
+
+.level .selector {
+    font-size: 32px;
+    left:86px;
+    height:43px;
+    width:43px;
+    display: none;
+}
+
+.level .increase {
+    top: 0px;
+}
+
+.level .decrease {
+    top: 42px;
+}
+
+.hpcount:hover > .selector,
+.level:hover  > .selector{
+    display: block;
+}
+
+.selector:hover {
+    font-size: 38px;
+}
+
+.selector:active {
+    font-size:36px;
+}
+
+.hpdice:hover > .bonus_button,
+.hddice .bonus_button:hover,
+.level:hover > .bonus_button,
+.hpcount:hover > .bonus_button,
+.bonus button:hover,
+.bonus button:hover input {
+    background-color: transparent;
+    background: radial-gradient(#00000028, transparent, transparent);
+
+    /* background: radial-gradient(var(--input-hover-bg-color), transparent); */
+    /* border-width: 2px; */
+}
+
+/* =========== Aspects ============ */
+
+.aspect {
+    position: absolute;
+    left: var(--left-column-align);
+    font-family: 'Grey Qo';
+    font-size: 32px;
+    text-align: left;
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.aspect div {
+    width: var(--input-aspects-width);
+}
+
+.aspect input {
+    appearance: none;
+
+    background-color: transparent;
+    border: none;
+    
+    /* border: 1px solid var(--select-border); */
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+}
+
+.aspect input:hover {
+    background-color: var(--input-hover-bg-color);
+}
+
+.aspect input:read-write:focus {
+    color: var(--input-edit-color);
+    background-color: var(--input-edit-bg-color);
+}
+
+/* ============ Dons & Sorts ============ */
+
+.skill {
+    position: absolute;
+    left: var(--left-column-align);
+    font-family: 'Grey Qo';
+    font-size: 32px;
+    text-align: left;
+    background-color: transparent;
+    border-width: 0px;
+    /* color: black; */
+}
+
+.skill div {
+    position: absolute;
+    width: 375px;
+}
+
+.skill select {
+    position: absolute;
+    width: 100%;
+    height: 45px;
+}
+
+.skill input {
+    appearance: none;
+
+    background-color: transparent;
+    border: none;
+    
+    /* border: 1px solid var(--select-border); */
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: 28px;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+}
+
+.skill input:hover {
+    background-color: var(--input-hover-bg-color);
+}
+
+.skill input:read-write:focus {
+    color: var(--input-edit-color);
+    background-color: var(--input-edit-bg-color);
+}
+
+.skill .langues-input {
+    width: var(--input-skills-width);
+}
+
+/* ============ Equipement ============ */
+.gear {
+    position: absolute;
+    left: var(--left-column-align);
+    font-family: 'Grey Qo';
+    font-size: 32px;
+    text-align: left;
+    background-color: transparent;
+    border-width: 0px;
+    /* color: black; */
+}
+
+.gear div {
+    position: absolute;
+    width: 250px;
+}
+
+.gear select {
+    position: absolute;
+    width: 100%;
+    height: 45px;
+}
+
+/*
+.weapon_button {
+    font-size: 16px;
+    height: 32px;
+    width: 60px;
+    top: 5px;
+    border-width: 1px;
+    border-radius: 3px;
+    font-family: 'Berkshire Swash', cursive;
+    text-align: center;
+}*/
+
+.gear button span {
+    font-family: var(--dice-font-family);
+}
+
+.gear button:hover{
+    background-color: var(--input-hover-bg-color);
+    border-width: 2px;
+}
+
+.cac {
+    position: absolute;
+    left: 252px;
+}
+
+.dis {
+    position: absolute;
+    left: 314px;
+}
+
+.shield {
+    position: absolute;
+    left: 60px;
+    top:  613px;
+    font-family: 'Grey Qo';
+    font-size: 28px;
+    text-align: left;
+    background-color: transparent;
+    border-width: 0px;
+}
+
+/* .shield input {
+
+} */
+
+/* .charsheet sheet-weapon_1-cac-button {
+    display: block;
+} */
+
+.charsheet .weapon-cac-switch:not(:checked) ~ .cac,
+.charsheet .weapon-dis-switch:not(:checked) ~ .dis {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input[type='text'] {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+input[type='text']:read-write:hover {
+    background-color: var(--input-hover-bg-color);
+}
+
+input[type='number']:read-write:hover {
+    background-color: var(--input-hover-bg-color);
+}
+
+select {
+    appearance: none;
+
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+}
+
+.select {
+    width: 180px;
+    /* min-width: 15ch;
+    max-width: 30ch; */
+    /* height: 50px; */
+    min-height: 36px;
+    /* border: 1px solid var(--select-border); */
+    /* border-radius: 0.25em; */
+    /* padding: 0em 0em; */
+    /* font-size: 1.25rem; */
+    cursor: pointer;
+    /* line-height: 1.1; */
+    line-height: 1.2;
+    background-color: transparent;
+    /* background-image: linear-gradient(to top, #f9f9f9, #fff 33%); */
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+
+.select:hover {
+    background-color: var(--input-hover-bg-color);
+    /* background-image: linear-gradient(to side, #f9f9f9, #fff 33%); */
+}
+
+
+
+
+
+
+.sheet-rolltemplate-rolls div.sheet-template-container {
+    text-align: center;
+    border: 1px solid rgb(49, 20, 45);
+    border-radius: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: radial-gradient(rgb(38, 19, 53), rgb(28, 7, 31), rgb(22, 5, 37));
+    font-family: 'Lexend', cursive;
+    font-size: 12px;
+}
+
+.sheet-rolltemplate-rolls span.inlinerollresult {
+    background-color: transparent;
+    border: none;
+}
+
+.sheet-rolltemplate-rolls span.inlinerollresult.fullcrit {
+    /* color: #3fb315; */
+    color: #4bd818;
+    border: none;
+}
+
+.sheet-rolltemplate-rolls span.inlinerollresult.fullfail {
+    /* color: #b31515; */
+    color: #e61b1b;
+    border: none;
+}
